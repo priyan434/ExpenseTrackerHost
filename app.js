@@ -42,7 +42,7 @@ const options = {
     security: [{ ApiKeyAuth: [] }],
     servers: [
       {
-        url: "http://localhost:3000",
+        url: "https://expensetrackerhost.onrender.com",
         description: "Development server",
       },
     ],

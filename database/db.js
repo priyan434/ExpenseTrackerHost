@@ -1,6 +1,6 @@
 const Sequelize = require("sequelize");
 require('dotenv').config()
-console.log(process.env.DATABASE_HOST);
+
 
 const sequelize = new Sequelize(
  process.env.MYSQL_ADDON_DB,

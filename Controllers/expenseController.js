@@ -440,7 +440,7 @@ exports.updateExpense = async (req, res) => {
     await Promise.all(
       allExpense.map((exp) => updateExpense(exp, fieldsToUpdate))
     );
-    const newRemoveUserIds = removeUserIds.filter(userId => userId !== specificUserId);
+    const newRemoveUserIds = removeUserIds.filter(Id => Id !==userId );
 
     if (newRemoveUserIds.length > 0) {
       await deleteSplitExpense(id, newRemoveUserIds);

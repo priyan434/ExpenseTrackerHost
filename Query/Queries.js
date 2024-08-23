@@ -202,7 +202,7 @@ exports.findallExpenses=async(id)=>{
     }
 }
 
-exports.deactivatedExpensens=async(id)=>{
+exports.deactivatedExpenses=async(id)=>{
     if (process.env.DATABASE === "mongodb") {
 
     } else {

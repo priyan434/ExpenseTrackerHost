@@ -48,7 +48,7 @@ const {
   findOne,
   findById,
   findallExpenses,
-  deactivatedExpensens,
+  deactivatedExpenses,
   findsplitexpensebyid,
 } = require("../Query/Queries");
 const { default: mongoose } = require("mongoose");
@@ -440,10 +440,10 @@ exports.updateExpense = async (req, res) => {
     await Promise.all(
       allExpense.map((exp) => updateExpense(exp, fieldsToUpdate))
     );
-    const newRemoveUserIds = removeUserIds.filter(Id => Id !==userId );
+    // const newRemoveUserIds = removeUserIds.filter(Id => Id !==userId );
 
-    if (newRemoveUserIds.length > 0) {
-      await deleteSplitExpense(id, newRemoveUserIds);
+    if (removeUserIds.length > 0) {
+      await deleteSplitExpense(id, removeUserIds);
       const allExpense = await findallExpenses(id);
       const expensesToUpdate = allExpense.filter((exp) =>
         removeUserIds.includes(exp.userId)
@@ -456,10 +456,15 @@ exports.updateExpense = async (req, res) => {
 
     let splitAmount;
     if (addUserIds.length > 0) {
-      const allExpense = await deactivatedExpensens(id);
+      const allExpense = await deactivatedExpenses(id);
+     
+      console.log(allExpense);
+      
       const expensesToReactivate = allExpense.filter((exp) =>
         addUserIds.includes(exp.userId)
       );
+
+      
 
       if (expensesToReactivate.length > 0) {
         await Promise.all(
